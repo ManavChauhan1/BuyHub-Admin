@@ -1,0 +1,9 @@
+import React from 'react'
+
+function DashboardPage() {
+  return (
+    <div>This is a DashboardPage.</div>
+  )
+}
+
+export default DashboardPage;
