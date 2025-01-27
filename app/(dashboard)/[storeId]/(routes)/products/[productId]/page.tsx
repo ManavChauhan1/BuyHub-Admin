@@ -21,6 +21,11 @@ const ProductPage = async ({
         }
     });
 
+    const formattedProduct = product ? {
+        ...product,
+        price: product.price.toNumber() // Convert the price Decimal to a number
+    } : null;
+
     const categories = await prismadb.category.findMany({
         where: {
             storeId: awaitedParams.storeId,
@@ -39,7 +44,6 @@ const ProductPage = async ({
         }
     })
 
-
     return (
         <div className='flex-col'>
             <div className='flex-1 space-y-4 p-8 pt-6'>
@@ -47,7 +51,7 @@ const ProductPage = async ({
                     categories = {categories}
                     colors =  {colors}
                     sizes = {sizes}
-                    initialData={product}
+                    initialData={formattedProduct}
                 />
             </div>
         </div>

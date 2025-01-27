@@ -34,8 +34,19 @@ const formSchema = z.object({
 type ProductFormValues = z.infer<typeof formSchema>;
 
 interface ProductFormProps{
-    initialData: (Product & {
-        images: Image[]
+    initialData: ({
+        name: string;
+        categoryId: string;
+        colorId: string;
+        sizeId: string;
+        isFeatured: boolean;
+        isArchived: boolean;
+        id: string;
+        storeId: string;
+        createdAt: Date;
+        updatedAt: Date;} & {
+        images: Image[];
+        price: number;
     }) | null;
     categories: Category[];
     colors: Color[];
