@@ -66,8 +66,11 @@ const ImageUpload:React.FC<ImageUploadProps> = ({
                 ))}
             </div>
             {/* onUploadAdded is used instead of onUpload */}
-            <CldUploadWidget onSuccess={onUpload} uploadPreset="o4q3t9ck"> 
-                {({open}) => {
+            <CldUploadWidget 
+                onSuccess={onUpload}
+                uploadPreset="o4q3t9ck"
+            > 
+                {({open}) => { 
                     const onClick = () => {
                         open();
                     }
