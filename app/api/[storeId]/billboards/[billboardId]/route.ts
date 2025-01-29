@@ -10,14 +10,15 @@ export async function GET(
     { params }: {params: { billboardId: string } }
 ) {
     try{
-        
-        if(!params.billboardId){
+        const awaitedParams = await params;
+
+        if(!awaitedParams.billboardId){
             return new NextResponse("Billboard ID is required", { status: 400});
         }
 
         const billboard = await prismadb.billboard.findUnique({
             where: {
-                id: params.billboardId
+                id: awaitedParams.billboardId
             }
         });
 
@@ -35,6 +36,9 @@ export async function PATCH(
     { params }: {params: { storeId: string, billboardId: string } }
 ) {
     try{
+
+        const awaitedParams = await params;
+
         const { userId } = await auth();
         const body = await req.json();
 
@@ -52,13 +56,13 @@ export async function PATCH(
             return new  NextResponse("Image URL is required", { status : 400 });
         }
 
-        if(!params.billboardId){
+        if(!awaitedParams.billboardId){
             return new NextResponse("Billboard ID is required", { status: 400});
         }
 
         const storeByUserId = await prismadb.store.findFirst({
             where: {
-                id: params.storeId,
+                id: awaitedParams.storeId,
                 userId
             }
         })
@@ -69,7 +73,7 @@ export async function PATCH(
 
         const billboard = await prismadb.billboard.updateMany({
             where: {
-                id: params.billboardId
+                id: awaitedParams.billboardId
             },
             data: {
                 label, 
@@ -93,19 +97,20 @@ export async function DELETE(
     try{
         const { userId } = await auth();
 
+        const awaitedParams = await params;
 
         if( !userId ){
             return new NextResponse("Unauthenticated", { status: 401 });
         }
 
 
-        if(!params.billboardId){
+        if(!awaitedParams.billboardId){
             return new NextResponse("Billboard ID is required", { status: 400});
         }
 
         const storeByUserId = await prismadb.store.findFirst({
             where: {
-                id: params.storeId,
+                id: awaitedParams.storeId,
                 userId
             }
         })
@@ -116,7 +121,7 @@ export async function DELETE(
 
         const billboard = await prismadb.billboard.deleteMany({
             where: {
-                id: params.billboardId
+                id: awaitedParams.billboardId
             }
         });
 

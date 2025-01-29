@@ -15,6 +15,8 @@ export async function POST(
         const body = await req.json(); //used req.body instead of req.json()
         const { name, value } = body;
 
+        const awaitedParams = await params;
+
         if(!userId){
             return new NextResponse("Unauthenticated", {status: 401})
         }
@@ -27,13 +29,13 @@ export async function POST(
             return new NextResponse("Value is required", {status:400});
         }
 
-        if(!params.storeId){
+        if(!awaitedParams.storeId){
             return new NextResponse("Store ID is required", {status:400});
         }
 
         const storeByUserId = await prismadb.store.findFirst({
             where: {
-                id: params.storeId,
+                id: awaitedParams.storeId,
                 userId
             }
         })
@@ -46,7 +48,7 @@ export async function POST(
             data: {
                 name,
                 value,
-                storeId: params.storeId
+                storeId: awaitedParams.storeId
             }
         });
 
@@ -64,14 +66,15 @@ export async function GET(
 ) {
     try{
 
+        const awaitedParams = await params;
 
-        if(!params.storeId){
+        if(!awaitedParams.storeId){
             return new NextResponse("Store ID is required", {status:400});
         }
 
         const colors = await prismadb.color.findMany({
             where: {
-                storeId: params.storeId
+                storeId: awaitedParams.storeId
             }
         });
 

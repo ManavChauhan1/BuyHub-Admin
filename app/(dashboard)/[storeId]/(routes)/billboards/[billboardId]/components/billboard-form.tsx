@@ -119,7 +119,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                         control={form.control}
                         name = "imageUrl"
                         render={({field}) => {
-                            console.log(field.value);  /* Log field value */ 
                             return (
                             <FormItem>
                                 <FormLabel>Background Image</FormLabel>
@@ -128,7 +127,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                                         value={field.value ? [field.value] : []}
                                         disabled = {loading}
                                         onChange={(url) => {
-                                            console.log("Image uploaded:", url); /* Log Upload URL */ 
                                             field.onChange(url)}}
                                         onRemove={() => field.onChange("")}
                                     />

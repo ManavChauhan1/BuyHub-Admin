@@ -39,8 +39,6 @@ const ProductsPage = async ({
     createdAt: format(item.createdAt, "MMMM do, yyyy")
   }))
 
-  console.log(typeof formattedProducts[0].price)
-
   return (
     <div className="flex-col">
         <div className="flex-1 space-y-4 p-8 pt-6">

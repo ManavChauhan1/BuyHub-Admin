@@ -10,14 +10,15 @@ export async function GET(
     { params }: {params: { sizeId: string } }
 ) {
     try{
+        const awaitedParams = await params;
         
-        if(!params.sizeId){
+        if(!awaitedParams.sizeId){
             return new NextResponse("Size ID is required", { status: 400});
         }
 
         const size = await prismadb.size.findUnique({
             where: {
-                id: params.sizeId
+                id: awaitedParams.sizeId
             }
         });
 
@@ -38,6 +39,8 @@ export async function PATCH(
         const { userId } = await auth();
         const body = await req.json();
 
+        const awaitedParams = await params;
+
         const { name, value } = body;
 
         if( !userId ){
@@ -52,13 +55,13 @@ export async function PATCH(
             return new  NextResponse("Value is required", { status : 400 });
         }
 
-        if(!params.sizeId){
+        if(!awaitedParams.sizeId){
             return new NextResponse("Size ID is required", { status: 400});
         }
 
         const storeByUserId = await prismadb.store.findFirst({
             where: {
-                id: params.storeId,
+                id: awaitedParams.storeId,
                 userId
             }
         })
@@ -69,7 +72,7 @@ export async function PATCH(
 
         const size = await prismadb.size.updateMany({
             where: {
-                id: params.sizeId
+                id: awaitedParams.sizeId
             },
             data: {
                 name, 
@@ -92,6 +95,7 @@ export async function DELETE(
 ) {
     try{
         const { userId } = await auth();
+        const awaitedParams = await params;
 
 
         if( !userId ){
@@ -99,13 +103,13 @@ export async function DELETE(
         }
 
 
-        if(!params.sizeId){
+        if(!awaitedParams.sizeId){
             return new NextResponse("Size ID is required", { status: 400});
         }
 
         const storeByUserId = await prismadb.store.findFirst({
             where: {
-                id: params.storeId,
+                id: awaitedParams.storeId,
                 userId
             }
         })
@@ -116,7 +120,7 @@ export async function DELETE(
 
         const size = await prismadb.size.deleteMany({
             where: {
-                id: params.sizeId
+                id: awaitedParams.sizeId
             }
         });
 

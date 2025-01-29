@@ -155,8 +155,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     <FormField
                         control={form.control}
                         name = "images"
-                        render={({field}) => {
-                            console.log("Field Value is:", field.value);  /* Log field value */ 
+                        render={({field}) => { 
                             return (
                             <FormItem>
                                 <FormLabel>Images</FormLabel>
@@ -168,12 +167,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                                     onChange={(url) => {
                                         const updatedImages = [...(field.value || []), { url }]; // Append new image
                                         field.onChange(updatedImages); // Update the form field
-                                        console.log("Updated Images:", updatedImages); // Debug updated value
                                     }}
                                     onRemove={(url) => {
                                         const updatedImages = field.value.filter((current) => current.url !== url); // Remove the selected image
                                         field.onChange(updatedImages); // Update the form field
-                                        console.log("Images After Removal:", updatedImages); // Debug updated value
                                     }}
                                 />
                                 </FormControl>
