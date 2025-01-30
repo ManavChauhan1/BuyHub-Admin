@@ -29,15 +29,17 @@ const ImageUpload:React.FC<ImageUploadProps> = ({
 
     
     const onUpload = (result: any) => {
-        console.log("Upload result:", result);  // Inspect the full response
-        const uploadedUrl = result?.info?.file?.url || result?.info?.secure_url;
 
-        if (uploadedUrl) {
-            console.log("Image uploaded successfully with URL:", uploadedUrl);  // Log the URL
-            onChange(uploadedUrl);  // Pass the URL to the form field
-        } else {
-            console.error("No URL found in the result:", result);
-        }
+        onChange(result.info.secure_url);
+
+        // const uploadedUrl = result?.info?.file?.url || result?.info?.secure_url;
+
+        // if (uploadedUrl) {
+            
+        //     onChange(uploadedUrl);  // Pass the URL to the form field
+        // } else {
+        //     console.error("No URL found in the result:", result);
+        // }
     }
 
 
