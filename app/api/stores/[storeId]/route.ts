@@ -6,7 +6,7 @@ import prismadb from "@/lib/prismadb";
 //Function to Update the Store Name
 export async function PATCH(
     req: Request,
-    { params }: {params: {storeId: string } }
+    { params }: {params: Promise<{storeId: string }> }
 ) {
     try{
         const { userId } = await auth();
@@ -49,7 +49,7 @@ export async function PATCH(
 //Function to Delete any existin store
 export async function DELETE(
     req: Request,
-    { params }: {params: {storeId: string } }
+    { params }: {params: Promise<{storeId: string }> }
 ) {
     try{
         const { userId } = await auth();

@@ -11,7 +11,7 @@ import { CreditCard, IndianRupee, Package } from 'lucide-react';
 import React from 'react'
 
 interface DashboardPageProps{
-  params: {storeId: string}
+  params: Promise<{storeId: string}>
 };
 
 const DashboardPage: React.FC<DashboardPageProps> = async ({

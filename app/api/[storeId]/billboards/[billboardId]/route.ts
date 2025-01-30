@@ -7,7 +7,7 @@ import prismadb from "@/lib/prismadb";
 //Function to GET the existing Billboard
 export async function GET(
     req: Request,
-    { params }: {params: { billboardId: string } }
+    { params }: {params: Promise<{ billboardId: string }> }
 ) {
     try{
         const awaitedParams = await params;
@@ -33,7 +33,7 @@ export async function GET(
 //Function to Update the Billboard Name
 export async function PATCH(
     req: Request,
-    { params }: {params: { storeId: string, billboardId: string } }
+    { params }: {params: Promise<{ storeId: string, billboardId: string }> }
 ) {
     try{
 
@@ -92,7 +92,7 @@ export async function PATCH(
 //Function to Delete any existing Billboard
 export async function DELETE(
     req: Request,
-    { params }: {params: {storeId: string, billboardId: string } }
+    { params }: {params: Promise<{storeId: string, billboardId: string }> }
 ) {
     try{
         const { userId } = await auth();

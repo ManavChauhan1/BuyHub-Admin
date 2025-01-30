@@ -6,7 +6,7 @@ import { SizeForm } from './components/size-form';
 const SizePage = async ({
     params
 }: {
-    params: {sizeId: string}
+    params: Promise<{sizeId: string}>
 }) => {
 
     //Params are changed to awaitedParams

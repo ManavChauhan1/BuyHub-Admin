@@ -7,7 +7,7 @@ import prismadb from "@/lib/prismadb";
 //Function to GET the existing COLORS
 export async function GET(
     req: Request,
-    { params }: {params: { colorId: string } }
+    { params }: {params: Promise<{ colorId: string }> }
 ) {
     try{
         const awaitedParams = await params;
@@ -33,7 +33,7 @@ export async function GET(
 //Function to Update the COLOR name
 export async function PATCH(
     req: Request,
-    { params }: {params: { storeId: string, colorId: string } }
+    { params }: {params: Promise<{ storeId: string, colorId: string }> }
 ) {
     try{
         const { userId } = await auth();
@@ -91,7 +91,7 @@ export async function PATCH(
 //Function to Delete any existing COLOR
 export async function DELETE(
     req: Request,
-    { params }: {params: {storeId: string, colorId: string } }
+    { params }: {params: Promise<{storeId: string, colorId: string }> }
 ) {
     try{
         const { userId } = await auth();

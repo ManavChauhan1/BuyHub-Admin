@@ -7,7 +7,7 @@ import prismadb from "@/lib/prismadb";
 //Function to GET the existing SIZES
 export async function GET(
     req: Request,
-    { params }: {params: { sizeId: string } }
+    { params }: {params: Promise<{ sizeId: string }> }
 ) {
     try{
         const awaitedParams = await params;
@@ -33,7 +33,7 @@ export async function GET(
 //Function to Update the SIZE name
 export async function PATCH(
     req: Request,
-    { params }: {params: { storeId: string, sizeId: string } }
+    { params }: {params: Promise<{ storeId: string, sizeId: string }> }
 ) {
     try{
         const { userId } = await auth();
@@ -91,7 +91,7 @@ export async function PATCH(
 //Function to Delete any existing Size
 export async function DELETE(
     req: Request,
-    { params }: {params: {storeId: string, sizeId: string } }
+    { params }: {params: Promise<{storeId: string, sizeId: string }> }
 ) {
     try{
         const { userId } = await auth();

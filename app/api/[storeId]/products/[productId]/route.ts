@@ -7,7 +7,7 @@ import prismadb from "@/lib/prismadb";
 //Function to GET the existing Products
 export async function GET(
     req: Request,
-    { params }: {params: { productId: string } }
+    { params }: {params: Promise<{ productId: string } >}
 ) {
     try{
         const awaitedParams = await params
@@ -38,7 +38,7 @@ export async function GET(
 //Function to Update the PRODUCT Name
 export async function PATCH(
     req: Request,
-    { params }: {params: { storeId: string, productId: string } }
+    { params }: {params: Promise<{ storeId: string, productId: string }> }
 ) {
     try{
         const awaitedParams = await params
@@ -143,7 +143,7 @@ export async function PATCH(
 //Function to Delete any existing Product
 export async function DELETE(
     req: Request,
-    { params }: {params: {storeId: string, productId: string } }
+    { params }: {params: Promise<{storeId: string, productId: string }> }
 ) {
     try{
         const awaitedParams = await params

@@ -7,7 +7,7 @@ import prismadb from "@/lib/prismadb";
 //Function to GET the existing Categories
 export async function GET(
     req: Request,
-    { params }: {params: { categoryId: string } }
+    { params }: {params: Promise<{ categoryId: string }> }
 ) {
     try{
         const awaitedParams = await params;
@@ -36,7 +36,7 @@ export async function GET(
 //Function to Update the Category Name
 export async function PATCH(
     req: Request,
-    { params }: {params: { storeId: string, categoryId: string } }
+    { params }: {params: Promise<{ storeId: string, categoryId: string }> }
 ) {
     try{
 
@@ -96,7 +96,7 @@ export async function PATCH(
 //Function to Delete any existing Category
 export async function DELETE(
     req: Request,
-    { params }: {params: {storeId: string, categoryId: string } }
+    { params }: {params: Promise<{storeId: string, categoryId: string }> }
 ) {
     try{
         const { userId } = await auth();

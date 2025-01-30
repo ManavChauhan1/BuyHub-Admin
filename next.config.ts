@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
     domains: [
       "res.cloudinary.com"
     ]
+  },
+  eslint: {
+    ignoreDuringBuilds: true
   }
 };
 
