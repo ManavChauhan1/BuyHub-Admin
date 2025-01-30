@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { z } from "zod";
-import { Category, Color, Image, Product, Size } from "@prisma/client";
+import { Category, Color, Image, Size } from "@prisma/client";
 import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -101,7 +101,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             router.push(`/${params.storeId}/products`)
             toast.success(toastMessage);
         } catch(error){
-            toast.error("Something Went Wrong.")
+            toast.error(`Something went wrong. ${error}`)
         } finally{
             setLoading(false);
         }
@@ -116,7 +116,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             toast.success("Product Deleted.");
 
         } catch(error){
-            toast.error("Something Went Wrong.");
+            toast.error(`Something went wrong. ${error}`);
         } finally{
             setLoading(false);
             setOpen(false);
@@ -319,7 +319,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                                     <FormControl>
                                         <Checkbox 
                                             checked={field.value}
-                                            // @ts-ignore
                                             onCheckedChange={field.onChange}
                                         />
                                     </FormControl>
@@ -342,7 +341,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                                     <FormControl>
                                         <Checkbox 
                                             checked={field.value}
-                                            // @ts-ignore
                                             onCheckedChange={field.onChange}
                                         />
                                     </FormControl>

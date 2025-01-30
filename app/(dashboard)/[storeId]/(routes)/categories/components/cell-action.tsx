@@ -45,7 +45,7 @@ export const CellAction: React.FC<CellActionProps> = ({
             toast.success("Category Deleted.");
 
         } catch(error){
-            toast.error("Make sure you removed all Products using this Category first.");
+            toast.error(`Make sure you removed all Products using this Category first.${error}`);
         } finally{
             setLoading(false);
             setOpen(false);

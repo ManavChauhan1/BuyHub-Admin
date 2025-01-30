@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ImagePlay, ImagePlus, Trash } from "lucide-react";
+import { ImagePlus, Trash } from "lucide-react";
 import Image from "next/image";
 import { CldUploadWidget } from "next-cloudinary";
 

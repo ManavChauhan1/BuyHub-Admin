@@ -23,9 +23,9 @@ export function ThemeToggle() {
     }, []);
 
     // Prevent rendering during SSR to avoid hydration errors
-    // if (!mounted) {
-    //     return null;
-    // }
+    if (!mounted) {
+        return null;
+    }
 
   return (
    <DropdownMenu>

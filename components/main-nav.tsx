@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export function MainNav({
     className,
-    ...props
+    // ...props
 }: React.HTMLAttributes<HTMLElement>) {
 
     const pathname = usePathname();

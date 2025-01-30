@@ -12,7 +12,6 @@ import { Modal } from "@/components/ui/modal";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { log } from "console";
 
 const formSchema = z.object({
     name: z.string().min(1),
@@ -38,7 +37,7 @@ export const StoreModal = () =>{
 
             window.location.assign(`${response.data.id}`);
         } catch(error){
-            toast.error("Something went wrong.");
+            toast.error(`Something went wrong. ${error}`);
         } finally {
             setLoading(false);
         }

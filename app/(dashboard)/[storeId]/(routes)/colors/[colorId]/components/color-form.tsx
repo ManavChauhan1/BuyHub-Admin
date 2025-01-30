@@ -16,7 +16,6 @@ import { Separator } from "@/components/ui/separator";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
-import ImageUpload from "@/components/ui/image-upload";
 
 const formSchema = z.object({
     name: z.string().min(1),
@@ -66,7 +65,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
             router.push(`/${params.storeId}/colors`)
             toast.success(toastMessage);
         } catch(error){
-            toast.error("Something Went Wrong.")
+            toast.error(`Something went wrong. ${error}`)
         } finally{
             setLoading(false);
         }
@@ -81,7 +80,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
             toast.success("Color Deleted.");
 
         } catch(error){
-            toast.error("Make sure you removed all products using this color first.");
+            toast.error(`Make sure you removed all products using this color first.${error}`);
         } finally{
             setLoading(false);
             setOpen(false);
