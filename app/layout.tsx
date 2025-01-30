@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 import { ClerkProvider } from "@clerk/nextjs";
+import dynamic from "next/dynamic";
 
 import { ModalProvider } from "@/providers/modal-provider";
 import { ToasterProvider } from "@/providers/toast-provider";
@@ -22,18 +23,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const store = prismadb.store;
 
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en"  suppressHydrationWarning>
         <body className={inter.className}>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <ToasterProvider/>
-            <ModalProvider/>
-            {children}
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <ToasterProvider />
+            <ModalProvider />
+              {children}
           </ThemeProvider>
-        </body>
+          </body>
       </html>
     </ClerkProvider>
   );
