@@ -81,7 +81,7 @@ export async function POST(
         }
     });
 
-    return NextResponse.json({ url: session.url }, {
+    return NextResponse.json({ url: session.success_url || session.cancel_url }, {
         headers: corsHeaders
     });
 }
