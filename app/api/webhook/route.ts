@@ -57,6 +57,7 @@ export async function POST(req: Request) {
                 isArchived: true,
             }
         })
+        console.log("Products archived successfully:", productIds);
     }
 
     return new NextResponse(null, { status: 200 });
