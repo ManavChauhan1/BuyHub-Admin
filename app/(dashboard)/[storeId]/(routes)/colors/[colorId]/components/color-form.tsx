@@ -56,7 +56,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
         try{
             setLoading(true);
             if(initialData){
-                await axios.patch(`/api/${params.storeId}/colors/${params.colorsId}`, data);
+                await axios.patch(`/api/${params.storeId}/colors/${params.colorId}`, data);
             }
             else{
                 await axios.post(`/api/${params.storeId}/colors`, data);
